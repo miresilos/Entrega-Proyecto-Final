@@ -1,0 +1,74 @@
+  <div class="container text-center my-3">
+  <div class="header d-flex justify-content-between">
+    <button onclick="location.href='/api/productos'" style="padding: 12px; border: 1px solid #000; border-radius: 100%; background: transparent;"><h1>HOME</h1></button>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent; color:#000; border: none;">
+        <img src={{userData.imgUrl}} alt="avatar" style="width: 100px; max-height: 80px; border-radius: 100%;"/>
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <button
+            class="dropdown-item"
+            onclick="location.href='/api/perfil'"
+          >
+            Perfil
+          </button>
+        </li>
+        <li>
+          <button
+            class="dropdown-item"
+            onclick="location.href='/api/carrito'"
+          >
+            Carrito
+          </button>
+        </li>
+        <li>
+          <button
+              class="dropdown-item"
+              onclick="location.href='/api/chat'"
+          >
+            Chat
+          </button>
+        </li>
+        <li>
+          <button
+            class="dropdown-item"
+            onclick="location.href='/api/logout'"
+          >
+            Salir
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+    <div class="container mt-5" style="max-width: 1000px; width: 100%; margin-top: 50px; border: 1px solid gray; border-radius: 10px; padding: 20px;">
+        <h1>Carrito</h1>
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody class="cartList">
+            {{#each data}}
+            <tr>
+                <td>
+                    <img class="img-thumbnail" style="height: 75px; width: 75px; margin-right: 10px;" src="{{thumbnail}}" />
+                    {{title}}
+                </td>
+                <td>${{price}}</td>
+                <td>{{quantity}}</td>
+                <td><button class="btn btn-danger btn-sm my-3" id="deleteBtn{{_id}}" onclick="deleteProductFromCartListener(this.id)" data-productid={{_id}} data-userid={{../userData._id}}>X</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+        </table>
+        <div class="d-flex justify-content-end" style="width: 100%;">
+            <button class="btn btn-primary btn-sm my-3" id="buyBtn" onclick="cartBuyListener(this.id)">Comprar</button>
+        </div>
+    </div>
+</div>
